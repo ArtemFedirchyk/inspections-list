@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="input-field col s12" {{action "sendAction"}}>
+      {{view "select"
+      content=fleetNumbers
+      optionValuePath="content.value"
+      optionLabelPath="content.label"
+      selection=selectedValue
+      action="setFleetNumber"
+      prompt="Please, choose Fleet Number"
+      }}
+        <label>Fleet number</label>
+        <!--
+                <select class="ember-select">
+                    <option value="" disabled selected>Choose the Fleet Number</option>
+                    <option value="500">500</option>
+                    <option value="800">800</option>
+                    <option value="1000">1000</option>
+                </select>
+
+                <label>Fleet number</label>
+         -->
+    </div>
+</div>

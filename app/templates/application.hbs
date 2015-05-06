@@ -1,0 +1,20 @@
+<!-- Header goes here -->
+<header>
+	{{#md-navbar-custom}}{{/md-navbar-custom}}
+</header>
+
+<!-- Main content of the page goes(renders) here(in this block) -->
+<main>
+	{{outlet}}
+</main>
+
+<!-- Footer goes here -->
+<footer>
+	<div class="row" style="bottom">
+		<div  class="col l10 offset-l1 s12">
+			<footer class="page-footer">
+			  {{#md-copyright text='Copyright Text' startYear=2015}}{{/md-copyright}}
+			</footer>
+		</div>
+	</div>
+</footer>

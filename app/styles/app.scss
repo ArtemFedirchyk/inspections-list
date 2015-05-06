@@ -1,0 +1,43 @@
+@import 'materialize';
+
+.row .nav-wrapper .brand-logo {
+	text-align: center;
+}
+
+header nav .nav-wrapper {
+	background-color: color('teal', 'lighten-1');
+}
+
+footer div div .page-footer {
+	background-color: color('teal', 'lighten-1');
+}
+
+main .container .selection-block {
+	padding-top: 20px;
+	padding-bottom: 25px;
+}
+
+main .container .inspection-checks {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+main .container .inspection-checks .row h4 {
+	color: color('grey', 'darken-3');
+	padding-bottom: 10px;
+}
+
+main .container .button-block {
+	padding-top: 20px;
+}
+
+main #general-inspection-list {
+	padding-top: 20px;
+} 
+
+/* FIXME: Workaround for https://github.com/Dogfalo/materialize/issues/1079 */
+@each $mdi-icon-name, $mdi-icon-value in $mdi-list-icons {
+  .#{$mdi-prefix}#{$mdi-icon-name}:before {
+    content: "\""+ $mdi-icon-value +"\"";
+  }
+}

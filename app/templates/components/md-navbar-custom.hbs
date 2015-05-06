@@ -1,0 +1,22 @@
+
+<!-- TODO: make more pretty -->
+<nav>
+    <div class="nav-wrapper">
+      <a class="center brand-logo">Inspections List</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      <div class="right hide-on-med-and-down">
+        <ul class="right hide-on-med-and-down">
+          {{#link-to 'inspections'}}
+            <li><a>Inspections list</a></li>
+          {{/link-to}}
+        </ul>
+        <div class="right hide-on-med-and-down">Tom Watson</div>
+      </div>
+      <ul class="side-nav" id="mobile-demo">
+        {{#link-to 'inspections'}}
+        <li><a href="inspections">Inspections list</a></li>
+        {{/link-to}}
+        <li><a>Tom Watson</a></li>
+      </ul>
+    </div>
+</nav>

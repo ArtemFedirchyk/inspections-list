@@ -1,0 +1,31 @@
+<!-- Avatar list goes here -->
+<div id="general-inspection-list" class="row">
+    <div class="col l10 offset-l1 s12">
+        <ul class="collection">
+          {{#link-to 'existing-inspection'}}
+            {{#each inspectionList in model}}
+                <li class="collection-item avatar" {{action 'findInspectionById' inspectionList.id}}>
+                    <i class="mdi-maps-directions-bus circle grey"></i>
+                    <span class="title">Fleet Number {{inspectionList.fleetNumber}}</span>
+
+                    <p>{{inspectionList.name}}<br>
+                      {{inspectionList.date}}
+                    </p>
+
+                    <div class="secondary-content"><p color="red">5 failures</p></div>
+                </li>
+            {{/each}}
+          {{/link-to}}
+        </ul>
+    </div>
+</div>
+
+<!-- Fixed button for adding new inspection goes here -->
+<div class="col10 offset l1 s12">
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      {{#link-to 'new-inspection'}}
+          <a class="btn-floating btn-large red"><i class="large mdi-content-add"></i></a>
+      {{/link-to}}
+    </div>
+</div>
+

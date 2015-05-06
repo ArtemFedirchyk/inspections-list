@@ -1,0 +1,133 @@
+<div class="container">
+  <!-- Drop-down selection block -->
+  <div class="selection-block">
+      <div class="container">
+          <label>Fleet number</label>
+        <!-- Drop-down list for choosing needed Fleet Number -->
+        {{md-select
+        content=fleetNumbers
+        optionValuePath="content.value"
+        optionLabelPath="content.label"
+        value=selectedFleetNumber
+        prompt="Please, choose Fleet Number"}}
+      </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- Check-boxes block -->
+  <div class="inspection-checks">
+      <div class="row">
+        <h4 class="col s12 header center">List of Inspections:</h4>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Cab Warning Devices</div>
+        <div class="col l1 s2">{{md-check checked=cabWarningDevices}}</div>
+        <div class="col l5 s10">Wipers, Washers, Horn</div>
+        <div class="col l1 s2">{{md-check checked=wipersWashHorn}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Demisters</div>
+        <div class="col l1 s2">{{md-check checked=demisters}}</div>
+        <div class="col l5 s10">Mirrors</div>
+        <div class="col l1 s2">{{md-check checked=mirrors}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Handbrake/Brakes</div>
+        <div class="col l1 s2">{{md-check checked=handBrake}}</div>
+        <div class="col l5 s10">Direction Indicators</div>
+        <div class="col l1 s2">{{md-check checked=directIndicators}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Fire Extinguishers</div>
+        <div class="col l1 s2">{{md-check checked=fireExtinguishers}}</div>
+        <div class="col l5 s10">Floor, Treads, Step, Stairs</div>
+        <div class="col l1 s2">{{md-check checked=floorThreads}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Driver's Seat (& Belt)</div>
+        <div class="col l1 s2">{{md-check checked=driversSeat}}</div>
+        <div class="col l5 s10">Passenger Seats (& Belts)</div>
+        <div class="col l1 s2">{{md-check checked=passengerSeats}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Handpoles</div>
+        <div class="col l1 s2">{{md-check checked=handPoles}}</div>
+        <div class="col l5 s10">Bells</div>
+        <div class="col l1 s2">{{md-check checked=bells}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Emergency Exit, Hammers</div>
+        <div class="col l1 s2">{{md-check checked=emergencyExitHammers}}</div>
+        <div class="col l5 s10">Interior Lights</div>
+        <div class="col l1 s2">{{md-check checked=interiorLights}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">TFT Screen</div>
+        <div class="col l1 s2">{{md-check checked=TFTScreen}}</div>
+        <div class="col l5 s10">Wheelchair Ramp</div>
+        <div class="col l1 s2">{{md-check checked=wheelchairRamp}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Entrance Door</div>
+        <div class="col l1 s2">{{md-check checked=EntranceDoor}}</div>
+        <div class="col l5 s10">Step/Platform Lights</div>
+        <div class="col l1 s2">{{md-check checked=stepLights}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Licence Discs</div>
+        <div class="col l1 s2">{{md-check checked=licenseDiscs}}</div>
+        <div class="col l5 s10">Windscreen, Windows</div>
+        <div class="col l1 s2">{{md-check checked=windscreen}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Exterior Lights</div>
+        <div class="col l1 s2">{{md-check checked=exteriorLights}}</div>
+        <div class="col l5 s10">Wheels, Nuts, Tyres</div>
+        <div class="col l1 s2">{{md-check checked=wheelsNutsTyres}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Body Panels</div>
+        <div class="col l1 s2">{{md-check checked=bodyPanels}}</div>
+        <div class="col l5 s10">Fuel Filter Cap</div>
+        <div class="col l1 s2">{{md-check checked=fuelFilterCup}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Oil, Water, Fuel Leaks</div>
+        <div class="col l1 s2">{{md-check checked=oilWaterFuelLicks}}</div>
+        <div class="col l5 s10">Emergency Exit (External)</div>
+        <div class="col l1 s2">{{md-check checked=emergencyExitExternal}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Bonnets, Flaps, Doors</div>
+        <div class="col l1 s2">{{md-check checked=bonnetsFlapsDoors}}</div>
+        <div class="col l5 s10">Exhaust Smoke</div>
+        <div class="col l1 s2">{{md-check checked=exhaustSmoke}}</div>
+      </div>
+      <div class="row">
+        <div class="col l5 s10">Destination Equipment</div>
+        <div class="col l1 s2">{{md-check checked=destinationEquipment}}</div>
+        <div class="col l5 s10">CCTV</div>
+        <div class="col l1 s2">{{md-check checked=CCTV}}</div>
+      </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Footer buttons block -->
+  <div class="button-block">
+    <div class="row">
+      <div id="back-button" class="col offset-l3 l3 s6">
+        {{#link-to 'inspections'}}
+          <a class="waves-effect waves-light btn"><i class="mdi-hardware-keyboard-arrow-left left"></i>back</a>
+        {{/link-to}}
+      </div>
+      <div class="col l6 s6">
+      {{#link-to 'inspections'}}
+      <button id="submit-button" class="btn waves-effect waves-light" type="submit" name="action" {{action "createModel"}}>Submit
+          <i class="mdi-content-send right"></i>
+        </button>
+      {{/link-to}}
+      </div>
+    </div>
+  </div>
+</div>
