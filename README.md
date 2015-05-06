@@ -16,13 +16,18 @@ You will need the following things properly installed on your computer.
 ## Installation
 
 * `git clone <repository-url>` this repository
-* change into the new directory
+* go into `inspections-list` directory
 * `npm install`
 * `bower install`
+ <p> If you will see next question, please choose `1` : </p> 
+Unable to find a suitable version for jquery, please choose one: </br>
+     1) jquery#^1.11.1 which resolved to 1.11.3 and is required by inspections-list </br>
+     2) jquery#>=2.1.1 which resolved to 2.1.4 and is required by materialize#0.96.1 </br>
+     3) jquery#>= 1.7.0 < 2.2.0 which resolved to 2.1.4 and is required by ember#1.11.1 </br>
 
 ## Running / Development
 
-* `ember server`
+* `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ### Code Generators
