@@ -4,6 +4,7 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   fleetNumber: DS.attr('string'),
   date: DS.attr('string'),
+  sort: DS.attr('number'),
 
   // inspections
   cabWarningDevices: DS.attr('boolean'),
@@ -39,10 +40,11 @@ export default DS.Model.extend({
 }).reopenClass({
 	FIXTURES: [
 		{
-			id: 1,
+			id: 0,
 			name: 'Tom Watson',
 			fleetNumber: '850',
 			date: '05.05.2015',
+      sort: 100,
 
       // inspections
       cabWarningDevices: true,
@@ -77,10 +79,11 @@ export default DS.Model.extend({
       CCTV: true
 		},
 		{
-			id: 2,
+			id: 1,
 			name: 'Tom Watson',
 			fleetNumber: '750',
 			date: '05.04.2015',
+      sort: 101,
 
       // inspections
       cabWarningDevices: false,
@@ -115,10 +118,11 @@ export default DS.Model.extend({
       CCTV: true
 		},
 		{
-			id: 3,
+			id: 2,
 			name: 'Tom Watson',
 			fleetNumber: '500',
 			date: '05.03.2015',
+      sort: 102,
 
       // inspections
       cabWarningDevices: false,
@@ -153,10 +157,11 @@ export default DS.Model.extend({
       CCTV: true
 		},
     {
-      id: 4,
+      id: 3,
       name: 'Tom Watson',
       fleetNumber: '500',
       date: '05.02.2015',
+      sort: 103,
 
       // inspections
       cabWarningDevices: true,
@@ -185,16 +190,56 @@ export default DS.Model.extend({
       fuelFilterCup: true,
       oilWaterFuelLicks: true,
       emergencyExitExternal: true,
-      bonnetsFlapsDoors: true,
+      bonnetsFlapsDoors: false,
       exhaustSmoke: true,
       destinationEquipment: false,
-      CCTV: true
+      CCTV: false
+    },
+    {
+      id: 4,
+      name: 'Tom Watson',
+      fleetNumber: '550',
+      date: '04.28.2015',
+      sort: 104,
+
+      // inspections
+      cabWarningDevices: false,
+      wipersWashHorn: true,
+      demisters: true,
+      mirrors: true,
+      handBrake: true,
+      directIndicators: false,
+      fireExtinguishers: true,
+      floorThreads: true,
+      driversSeat: true,
+      passengerSeats: false,
+      handPoles: true,
+      bells: true,
+      emergencyExitHammers: true,
+      interiorLights: true,
+      TFTScreen: true,
+      wheelchairRamp: false,
+      EntranceDoor: true,
+      stepLights: true,
+      licenseDiscs: false,
+      windscreen: true,
+      exteriorLights: true,
+      wheelsNutsTyres: true,
+      bodyPanels: true,
+      fuelFilterCup: true,
+      oilWaterFuelLicks: true,
+      emergencyExitExternal: true,
+      bonnetsFlapsDoors: true,
+      exhaustSmoke: true,
+      destinationEquipment: true,
+      CCTV: false
     },
     {
       id: 5,
       name: 'Tom Watson',
-      fleetNumber: '550',
-      date: '05.01.2015',
+      fleetNumber: '500',
+      date: '04.23.2015',
+      sort: 105,
 
       // inspections
       cabWarningDevices: false,
@@ -221,6 +266,45 @@ export default DS.Model.extend({
       wheelsNutsTyres: true,
       bodyPanels: true,
       fuelFilterCup: true,
+      oilWaterFuelLicks: false,
+      emergencyExitExternal: true,
+      bonnetsFlapsDoors: true,
+      exhaustSmoke: true,
+      destinationEquipment: true,
+      CCTV: true
+    },
+    {
+      id: 6,
+      name: 'Tom Watson',
+      fleetNumber: '850',
+      date: '04.20.2015',
+      sort: 106,
+
+      // inspections
+      cabWarningDevices: false,
+      wipersWashHorn: true,
+      demisters: true,
+      mirrors: true,
+      handBrake: true,
+      directIndicators: false,
+      fireExtinguishers: true,
+      floorThreads: true,
+      driversSeat: true,
+      passengerSeats: false,
+      handPoles: true,
+      bells: true,
+      emergencyExitHammers: true,
+      interiorLights: true,
+      TFTScreen: true,
+      wheelchairRamp: false,
+      EntranceDoor: true,
+      stepLights: true,
+      licenseDiscs: false,
+      windscreen: true,
+      exteriorLights: true,
+      wheelsNutsTyres: true,
+      bodyPanels: true,
+      fuelFilterCup: false,
       oilWaterFuelLicks: true,
       emergencyExitExternal: true,
       bonnetsFlapsDoors: true,

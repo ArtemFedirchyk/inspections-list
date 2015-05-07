@@ -1,8 +1,10 @@
 import Ember from 'ember';
-//import BusSelection from '../components/md-select-bus.js';
 
 export default Ember.Controller.extend({
-  //busSelection: BusSelection,
+  needs: ['inspections'],
+  Inspections: Ember.computed.alias('controllers.inspections'),
+
+  busDriver: "Tom Watson",
 
   // List of Inspections' variables
   cabWarningDevices: false,
@@ -36,10 +38,10 @@ export default Ember.Controller.extend({
   destinationEquipment: false,
   CCTV: false,
 
-  needs: ['inspections'],
-
   // Variable for storing selected Fleet Number from drop-down list
   selectedFleetNumber: null,
+  // For sorting models in List
+  sortAttribute: 99,
 
   // For filling drop-down selection menu of Fleet Number
   fleetNumbers: [
@@ -49,6 +51,11 @@ export default Ember.Controller.extend({
     {label: '780', value: '780'},
     {label: '850', value: '850'}
   ],
+
+  init: function(){
+    var inspectionController = this.get('Inspections');
+    inspectionController.setNewInspecctionController(this);
+  },
 
   actions: {
     createModel: function () {
@@ -72,6 +79,7 @@ export default Ember.Controller.extend({
         name: 'Tom Watson',
         fleetNumber: this.get('selectedFleetNumber'),
         date: readableDate,
+        sort: this.get('sortAttribute'),
 
         // Feeling Inspections list's variables for new model
         cabWarningDevices: this.get('cabWarningDevices'),
@@ -108,9 +116,12 @@ export default Ember.Controller.extend({
 
       // Saving the 'Driver' model
       driver.save();
+      this.set('sortAttribute', (this.get('sortAttribute')-1));
     },
     resetCheckBoxes: function() {
-      this.set(this.cabWarningDevices, false);
+      console.log('Inside resetCheckBoxes()');
+      var parent = this;
+      this.set(parent.cabWarningDevices, false);
     }
   }
 

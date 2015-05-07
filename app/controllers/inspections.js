@@ -1,14 +1,17 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
+export default Ember.ArrayController.extend({
   // Declaration of 'existing-inspection' controller for future using inside this controller
-  needs: 'existing-inspection',
-  dataController: Ember.computed.alias('controllers.existing-inspection'),
+  needs: ['existing-inspection', 'new-inspection'],
+  existingController: Ember.computed.alias('controllers.existing-inspection'),
+  newInspectionController: Ember.computed.alias('controllers.new-inspection'),
 
   foundModel: undefined,
+  failuresCounter: 0,
 
   actions: {
     findInspectionById: function (inspectionId) {
+      console.log('inside findInspectionById()');
       // Gets all models from Store
       var foundInspections = this.get('model');
       var parent = this;
@@ -21,61 +24,119 @@ export default Ember.Controller.extend({
       });
 
       // Initializing of 'existing-inspection' controller for future setting needed fields for binding to check-boxes
-      this.get('dataController').init();
+      this.get('existingController').init();
       // Checks if 'existing-inspection' controller instance is present(not equals to NULL) then fills all inspection
       // variables from needed model for future binding them to check-boxes
-      if (parent.dataController !== null) {
+      if (parent.existingController !== null) {
         parent.fillController();
+      }
+      this.send('checkFailures');
+    },
+    // Checks how much failures are present in Inspection record (Model)
+    checkFailures: function(){
+      console.log('Inside checkFailures action');
+      var parent = this;
+      var foundModel = parent.foundModel;
+      var counter = 0;
+      if(foundModel.get('cabWarningDevices') === false){
+        counter = parent.failuresCounter + 1;
+        parent.set('failuresCounter', counter);
+      }
+      console.log(parent.get('failuresCounter'));
+    },
+    // Clears all Check-boxes and drop-down for new inspection
+    clearNewInspection: function(){
+      var parent = this;
+      this.get('newInspectionController').init();
+      if(parent.newInspectionController !== null){
+        var newInspectionController = parent.newInspectionController;
+        // Resetting Fleet Number value from drop-down
+        newInspectionController.set('selectedFleetNumber', null);
+        // Resetting inspections values
+        newInspectionController.set('cabWarningDevices', false);
+        newInspectionController.set('wipersWashHorn', false);
+        newInspectionController.set('demisters', false);
+        newInspectionController.set('mirrors', false);
+        newInspectionController.set('handBrake', false);
+        newInspectionController.set('directIndicators', false);
+        newInspectionController.set('fireExtinguishers', false);
+        newInspectionController.set('floorThreads', false);
+        newInspectionController.set('driversSeat', false);
+        newInspectionController.set('passengerSeats', false);
+        newInspectionController.set('handPoles', false);
+        newInspectionController.set('bells', false);
+        newInspectionController.set('emergencyExitHammers', false);
+        newInspectionController.set('interiorLights', false);
+        newInspectionController.set('TFTScreen', false);
+        newInspectionController.set('wheelchairRamp', false);
+        newInspectionController.set('EntranceDoor', false);
+        newInspectionController.set('stepLights', false);
+        newInspectionController.set('licenseDiscs', false);
+        newInspectionController.set('windscreen', false);
+        newInspectionController.set('exteriorLights', false);
+        newInspectionController.set('wheelsNutsTyres', false);
+        newInspectionController.set('bodyPanels', false);
+        newInspectionController.set('fuelFilterCup', false);
+        newInspectionController.set('oilWaterFuelLicks', false);
+        newInspectionController.set('emergencyExitExternal', false);
+        newInspectionController.set('bonnetsFlapsDoors', false);
+        newInspectionController.set('exhaustSmoke', false);
+        newInspectionController.set('destinationEquipment', false);
+        newInspectionController.set('CCTV', false);
       }
     }
   },
 
-  // Sets 'existing-inspection' controller to dataController variable for future using
+  // Sets 'existing-inspection' controller to existingController variable for future using
   setController: function(controller) {
-    this.dataController = controller;
+    this.existingController = controller;
+  },
+  //Sets 'new-inspection' controller to newInspectionController variable for future using
+  setNewInspecctionController: function(controller){
+    this.newInspectionController = controller;
   },
 
   // Fills all inspection variables of 'existing-inspection' controller from needed model
   // for future binding them to check-boxes
   fillController: function(){
     var foundModel = this.foundModel;
-    var dataController = this.dataController;
+    var existingController = this.existingController;
 
-    dataController.set('fleetNumber', foundModel.get('fleetNumber'));
-    dataController.set('busDriver', foundModel.get('name'));
+    existingController.set('fleetNumber', foundModel.get('fleetNumber'));
+    existingController.set('busDriver', foundModel.get('name'));
 
-    console.log('Fleet NUMBER - ' + dataController.get('fleetNumber'));
+    console.log('Fleet NUMBER - ' + existingController.get('fleetNumber'));
 
-    dataController.set('cabWarningDevices', foundModel.get('cabWarningDevices'));
-    dataController.set('wipersWashHorn',foundModel.get('wipersWashHorn'));
-    dataController.set('demisters',foundModel.get('demisters'));
-    dataController.set('mirrors',foundModel.get('mirrors'));
-    dataController.set('handBrake',foundModel.get('handBrake'));
-    dataController.set('directIndicators',foundModel.get('directIndicators'));
-    dataController.set('fireExtinguishers',foundModel.get('fireExtinguishers'));
-    dataController.set('floorThreads',foundModel.get('floorThreads'));
-    dataController.set('driversSeat',foundModel.get('driversSeat'));
-    dataController.set('passengerSeats',foundModel.get('passengerSeats'));
-    dataController.set('handPoles',foundModel.get('handPoles'));
-    dataController.set('bells',foundModel.get('bells'));
-    dataController.set('emergencyExitHammers',foundModel.get('emergencyExitHammers'));
-    dataController.set('interiorLights',foundModel.get('interiorLights'));
-    dataController.set('TFTScreen',foundModel.get('TFTScreen'));
-    dataController.set('wheelchairRamp',foundModel.get('wheelchairRamp'));
-    dataController.set('EntranceDoor',foundModel.get('EntranceDoor'));
-    dataController.set('stepLights',foundModel.get('stepLights'));
-    dataController.set('licenseDiscs',foundModel.get('licenseDiscs'));
-    dataController.set('windscreen',foundModel.get('windscreen'));
-    dataController.set('exteriorLights',foundModel.get('exteriorLights'));
-    dataController.set('wheelsNutsTyres',foundModel.get('wheelsNutsTyres'));
-    dataController.set('bodyPanels',foundModel.get('bodyPanels'));
-    dataController.set('fuelFilterCup',foundModel.get('fuelFilterCup'));
-    dataController.set('oilWaterFuelLicks',foundModel.get('oilWaterFuelLicks'));
-    dataController.set('emergencyExitExternal',foundModel.get('emergencyExitExternal'));
-    dataController.set('bonnetsFlapsDoors',foundModel.get('bonnetsFlapsDoors'));
-    dataController.set('exhaustSmoke',foundModel.get('exhaustSmoke'));
-    dataController.set('destinationEquipment',foundModel.get('destinationEquipment'));
-    dataController.set('CCTV',foundModel.get('CCTV'));
+    existingController.set('cabWarningDevices', foundModel.get('cabWarningDevices'));
+    existingController.set('wipersWashHorn',foundModel.get('wipersWashHorn'));
+    existingController.set('demisters',foundModel.get('demisters'));
+    existingController.set('mirrors',foundModel.get('mirrors'));
+    existingController.set('handBrake',foundModel.get('handBrake'));
+    existingController.set('directIndicators',foundModel.get('directIndicators'));
+    existingController.set('fireExtinguishers',foundModel.get('fireExtinguishers'));
+    existingController.set('floorThreads',foundModel.get('floorThreads'));
+    existingController.set('driversSeat',foundModel.get('driversSeat'));
+    existingController.set('passengerSeats',foundModel.get('passengerSeats'));
+    existingController.set('handPoles',foundModel.get('handPoles'));
+    existingController.set('bells',foundModel.get('bells'));
+    existingController.set('emergencyExitHammers',foundModel.get('emergencyExitHammers'));
+    existingController.set('interiorLights',foundModel.get('interiorLights'));
+    existingController.set('TFTScreen',foundModel.get('TFTScreen'));
+    existingController.set('wheelchairRamp',foundModel.get('wheelchairRamp'));
+    existingController.set('EntranceDoor',foundModel.get('EntranceDoor'));
+    existingController.set('stepLights',foundModel.get('stepLights'));
+    existingController.set('licenseDiscs',foundModel.get('licenseDiscs'));
+    existingController.set('windscreen',foundModel.get('windscreen'));
+    existingController.set('exteriorLights',foundModel.get('exteriorLights'));
+    existingController.set('wheelsNutsTyres',foundModel.get('wheelsNutsTyres'));
+    existingController.set('bodyPanels',foundModel.get('bodyPanels'));
+    existingController.set('fuelFilterCup',foundModel.get('fuelFilterCup'));
+    existingController.set('oilWaterFuelLicks',foundModel.get('oilWaterFuelLicks'));
+    existingController.set('emergencyExitExternal',foundModel.get('emergencyExitExternal'));
+    existingController.set('bonnetsFlapsDoors',foundModel.get('bonnetsFlapsDoors'));
+    existingController.set('exhaustSmoke',foundModel.get('exhaustSmoke'));
+    existingController.set('destinationEquipment',foundModel.get('destinationEquipment'));
+    existingController.set('CCTV',foundModel.get('CCTV'));
   }
 });
 
