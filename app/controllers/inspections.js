@@ -91,7 +91,7 @@ export default Ember.ArrayController.extend({
   setController: function(controller) {
     this.existingController = controller;
   },
-  //Sets 'new-inspection' controller to newInspectionController variable for future using
+  // Sets 'new-inspection' controller to newInspectionController variable for future using
   setNewInspecctionController: function(controller){
     this.newInspectionController = controller;
   },
@@ -137,6 +137,7 @@ export default Ember.ArrayController.extend({
     existingController.set('exhaustSmoke',foundModel.get('exhaustSmoke'));
     existingController.set('destinationEquipment',foundModel.get('destinationEquipment'));
     existingController.set('CCTV',foundModel.get('CCTV'));
+    existingController.set('date', foundModel.get('date'));
   }
 });
 

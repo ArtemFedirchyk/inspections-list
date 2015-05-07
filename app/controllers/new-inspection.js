@@ -37,7 +37,8 @@ export default Ember.Controller.extend({
   exhaustSmoke: false,
   destinationEquipment: false,
   CCTV: false,
-
+  // Variable which contains count of failures for current Inspection
+  failuresCount: 0,
   // Variable for storing selected Fleet Number from drop-down list
   selectedFleetNumber: null,
   // For sorting models in List
@@ -52,24 +53,29 @@ export default Ember.Controller.extend({
     {label: '850', value: '850'}
   ],
 
-  init: function(){
+  init: function () {
     var inspectionController = this.get('Inspections');
     inspectionController.setNewInspecctionController(this);
   },
 
   actions: {
     createModel: function () {
+      // Counts inspection failures
+      this.send('countFailures');
+      console.log('Count of failures from store procedure - ' + this.get('failuresCount'));
+
+
       // Generation of the TIME -----------------------------------
       var today = new Date();
       var dd = today.getDate();
-      var mm = today.getMonth()+1; //January is 0!
+      var mm = today.getMonth() + 1; // Because January in this case equals 0
       var yyyy = today.getFullYear();
 
-      if(dd<10) {
-        dd='0'+dd;
+      if (dd < 10) {
+        dd = '0' + dd;
       }
-      if(mm<10) {
-        mm='0'+mm;
+      if (mm < 10) {
+        mm = '0' + mm;
       }
       // ------------------------------------------------------------
       var readableDate = mm + '.' + dd + '.' + yyyy;
@@ -111,17 +117,57 @@ export default Ember.Controller.extend({
         bonnetsFlapsDoors: this.get('bonnetsFlapsDoors'),
         exhaustSmoke: this.get('exhaustSmoke'),
         destinationEquipment: this.get('destinationEquipment'),
-        CCTV: this.get('CCTV')
+        CCTV: this.get('CCTV'),
+        failuresCount: this.get('failuresCount')
       });
 
       // Saving the 'Driver' model
       driver.save();
-      this.set('sortAttribute', (this.get('sortAttribute')-1));
+      // Resets count of failures for inspections
+      this.set('failuresCount', 0);
+      this.set('sortAttribute', (this.get('sortAttribute') - 1));
     },
-    resetCheckBoxes: function() {
-      console.log('Inside resetCheckBoxes()');
+    countFailures: function () {
       var parent = this;
-      this.set(parent.cabWarningDevices, false);
+      // Array which contains all inspections after User's action
+      var failuresArray = [];
+      failuresArray.push(
+        this.cabWarningDevices,
+        this.wipersWashHorn,
+        this.demisters,
+        this.mirrors,
+        this.handBrake,
+        this.directIndicators,
+        this.fireExtinguishers,
+        this.floorThreads,
+        this.driversSeat,
+        this.passengerSeats,
+        this.handPoles,
+        this.bells,
+        this.emergencyExitHammers,
+        this.interiorLights,
+        this.TFTScreen,
+        this.wheelchairRamp,
+        this.EntranceDoor,
+        this.stepLights,
+        this.licenseDiscs,
+        this.windscreen,
+        this.exteriorLights,
+        this.wheelsNutsTyres,
+        this.bodyPanels,
+        this.fuelFilterCup,
+        this.oilWaterFuelLicks,
+        this.emergencyExitExternal,
+        this.bonnetsFlapsDoors,
+        this.exhaustSmoke,
+        this.destinationEquipment,
+        this.CCTV
+      );
+      failuresArray.forEach(function (entry) {
+        if (entry === false) {
+          parent.set('failuresCount', (parent.get('failuresCount') + 1));
+        }
+      });
     }
   }
 

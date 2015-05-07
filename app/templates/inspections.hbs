@@ -11,8 +11,8 @@
                       {{inspectionList.date}}
                     </p>
                     <!-- Here goes logic for showing count of failures in Inspection section -->
-                    {{#if failuresCounter}}
-                    <div class="secondary-content"><p color="red">{{failuresCounter}} failures</p></div>
+                    {{#if inspectionList.failuresCount}}
+                      <div class="secondary-content"><p color="red">{{inspectionList.failuresCount}} failures</p></div>
                     {{/if}}
                 </li>
             {{/each}}

@@ -39,6 +39,8 @@ export default Ember.Controller.extend({
   destinationEquipment: false,
   CCTV: false,
 
+  date: '',
+
   init: function(){
     var inspectionModel = this.get('Inspections');
     inspectionModel.setController(this);

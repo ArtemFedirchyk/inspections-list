@@ -36,7 +36,9 @@ export default DS.Model.extend({
   bonnetsFlapsDoors: DS.attr('boolean'),
   exhaustSmoke: DS.attr('boolean'),
   destinationEquipment: DS.attr('boolean'),
-  CCTV: DS.attr('boolean')
+  CCTV: DS.attr('boolean'),
+  // Count of failed inspections
+  failuresCount: DS.attr('number')
 }).reopenClass({
 	FIXTURES: [
 		{
@@ -76,7 +78,9 @@ export default DS.Model.extend({
       bonnetsFlapsDoors: true,
       exhaustSmoke: true,
       destinationEquipment: true,
-      CCTV: true
+      CCTV: true,
+      // Count of failed inspections
+      failuresCount: 5
 		},
 		{
 			id: 1,
@@ -86,12 +90,12 @@ export default DS.Model.extend({
       sort: 101,
 
       // inspections
-      cabWarningDevices: false,
+      cabWarningDevices: true,
       wipersWashHorn: false,
       demisters: true,
       mirrors: true,
       handBrake: true,
-      directIndicators: false,
+      directIndicators: true,
       fireExtinguishers: true,
       floorThreads: false,
       driversSeat: true,
@@ -115,7 +119,9 @@ export default DS.Model.extend({
       bonnetsFlapsDoors: true,
       exhaustSmoke: true,
       destinationEquipment: true,
-      CCTV: true
+      CCTV: true,
+      // Count of failed inspections
+      failuresCount: 3
 		},
 		{
 			id: 2,
@@ -125,7 +131,7 @@ export default DS.Model.extend({
       sort: 102,
 
       // inspections
-      cabWarningDevices: false,
+      cabWarningDevices: true,
       wipersWashHorn: true,
       demisters: true,
       mirrors: true,
@@ -136,15 +142,15 @@ export default DS.Model.extend({
       driversSeat: true,
       passengerSeats: true,
       handPoles: true,
-      bells: false,
+      bells: true,
       emergencyExitHammers: true,
       interiorLights: true,
       TFTScreen: true,
       wheelchairRamp: true,
       EntranceDoor: true,
       stepLights: true,
-      licenseDiscs: false,
-      windscreen: false,
+      licenseDiscs: true,
+      windscreen: true,
       exteriorLights: true,
       wheelsNutsTyres: true,
       bodyPanels: true,
@@ -153,8 +159,10 @@ export default DS.Model.extend({
       emergencyExitExternal: true,
       bonnetsFlapsDoors: true,
       exhaustSmoke: true,
-      destinationEquipment: false,
-      CCTV: true
+      destinationEquipment: true,
+      CCTV: true,
+      // Count of failed inspections
+      failuresCount: 0
 		},
     {
       id: 3,
@@ -181,47 +189,8 @@ export default DS.Model.extend({
       TFTScreen: true,
       wheelchairRamp: true,
       EntranceDoor: false,
-      stepLights: false,
-      licenseDiscs: true,
-      windscreen: true,
-      exteriorLights: true,
-      wheelsNutsTyres: true,
-      bodyPanels: false,
-      fuelFilterCup: true,
-      oilWaterFuelLicks: true,
-      emergencyExitExternal: true,
-      bonnetsFlapsDoors: false,
-      exhaustSmoke: true,
-      destinationEquipment: false,
-      CCTV: false
-    },
-    {
-      id: 4,
-      name: 'Tom Watson',
-      fleetNumber: '550',
-      date: '04.28.2015',
-      sort: 104,
-
-      // inspections
-      cabWarningDevices: false,
-      wipersWashHorn: true,
-      demisters: true,
-      mirrors: true,
-      handBrake: true,
-      directIndicators: false,
-      fireExtinguishers: true,
-      floorThreads: true,
-      driversSeat: true,
-      passengerSeats: false,
-      handPoles: true,
-      bells: true,
-      emergencyExitHammers: true,
-      interiorLights: true,
-      TFTScreen: true,
-      wheelchairRamp: false,
-      EntranceDoor: true,
       stepLights: true,
-      licenseDiscs: false,
+      licenseDiscs: true,
       windscreen: true,
       exteriorLights: true,
       wheelsNutsTyres: true,
@@ -232,7 +201,50 @@ export default DS.Model.extend({
       bonnetsFlapsDoors: true,
       exhaustSmoke: true,
       destinationEquipment: true,
-      CCTV: false
+      CCTV: true,
+      // Count of failed inspections
+      failuresCount: 2
+    },
+    {
+      id: 4,
+      name: 'Tom Watson',
+      fleetNumber: '550',
+      date: '04.28.2015',
+      sort: 104,
+
+      // inspections
+      cabWarningDevices: true,
+      wipersWashHorn: true,
+      demisters: true,
+      mirrors: true,
+      handBrake: true,
+      directIndicators: true,
+      fireExtinguishers: true,
+      floorThreads: true,
+      driversSeat: true,
+      passengerSeats: false,
+      handPoles: true,
+      bells: true,
+      emergencyExitHammers: true,
+      interiorLights: true,
+      TFTScreen: true,
+      wheelchairRamp: true,
+      EntranceDoor: true,
+      stepLights: true,
+      licenseDiscs: true,
+      windscreen: true,
+      exteriorLights: true,
+      wheelsNutsTyres: true,
+      bodyPanels: true,
+      fuelFilterCup: true,
+      oilWaterFuelLicks: true,
+      emergencyExitExternal: true,
+      bonnetsFlapsDoors: true,
+      exhaustSmoke: true,
+      destinationEquipment: true,
+      CCTV: true,
+      // Count of failed inspections
+      failuresCount: 0
     },
     {
       id: 5,
@@ -271,7 +283,9 @@ export default DS.Model.extend({
       bonnetsFlapsDoors: true,
       exhaustSmoke: true,
       destinationEquipment: true,
-      CCTV: true
+      CCTV: true,
+      // Count of failed inspections
+      failuresCount: 5
     },
     {
       id: 6,
@@ -281,36 +295,38 @@ export default DS.Model.extend({
       sort: 106,
 
       // inspections
-      cabWarningDevices: false,
+      cabWarningDevices: true,
       wipersWashHorn: true,
       demisters: true,
       mirrors: true,
       handBrake: true,
-      directIndicators: false,
+      directIndicators: true,
       fireExtinguishers: true,
       floorThreads: true,
       driversSeat: true,
-      passengerSeats: false,
+      passengerSeats: true,
       handPoles: true,
       bells: true,
       emergencyExitHammers: true,
       interiorLights: true,
       TFTScreen: true,
-      wheelchairRamp: false,
+      wheelchairRamp: true,
       EntranceDoor: true,
       stepLights: true,
-      licenseDiscs: false,
+      licenseDiscs: true,
       windscreen: true,
       exteriorLights: true,
       wheelsNutsTyres: true,
       bodyPanels: true,
-      fuelFilterCup: false,
+      fuelFilterCup: true,
       oilWaterFuelLicks: true,
       emergencyExitExternal: true,
       bonnetsFlapsDoors: true,
       exhaustSmoke: true,
       destinationEquipment: true,
-      CCTV: true
+      CCTV: true,
+      // Count of failed inspections
+      failuresCount: 0
     }
 	]
 });

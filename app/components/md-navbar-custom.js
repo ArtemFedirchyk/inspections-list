@@ -18,7 +18,7 @@ export default Ember.Component.extend({
         closeOnClick: true
       });
     }
-  },
+  }
 
   //TODO: Unregister any listeners that $.sideNav() puts in place
   // _teardownNavbar() {
